@@ -27,14 +27,14 @@ export default function ReviewPage() {
       router.replace("/");
     }
     return (
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex min-h-[50vh] items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-border border-t-accent" />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-1 flex-col items-center px-6 py-12">
+    <div className="flex flex-col items-center px-6 py-12">
       <div className="w-full max-w-2xl space-y-10">
         <MirrorSection text={result.mirror} />
 
