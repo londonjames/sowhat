@@ -93,24 +93,32 @@ export default function InputArea() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center gap-6 py-24">
-        <div className="relative h-12 w-12">
-          <div className="absolute inset-0 rounded-full border-2 border-gray-border" />
-          <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-accent" />
+      <div className="flex flex-col items-center justify-center gap-6 py-20">
+        <p className="text-xl italic text-foreground">
+          Reading your document...
+        </p>
+        <div className="flex items-center gap-2">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="h-1.5 w-8 rounded-full bg-gray-border animate-pulse"
+              style={{ animationDelay: `${i * 200}ms` }}
+            />
+          ))}
         </div>
-        <p className="text-lg text-gray">Reading your document...</p>
       </div>
     );
   }
 
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className="flex w-full flex-col gap-5">
       <textarea
         value={text}
         onChange={handleTextChange}
         placeholder="Paste your document here..."
-        rows={10}
-        className="w-full resize-none rounded-xl border border-gray-border bg-surface p-6 text-base leading-relaxed text-foreground placeholder:text-gray-light focus:border-accent focus:outline-none"
+        rows={6}
+        autoFocus
+        className="w-full resize-y rounded-lg border border-gray-border bg-white px-5 py-4 text-base leading-relaxed text-foreground placeholder:text-gray-light outline-none transition-colors focus:border-foreground"
       />
 
       <div
@@ -121,54 +129,25 @@ export default function InputArea() {
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-8 transition-colors ${
+        className={`flex cursor-pointer items-center justify-center gap-3 rounded-lg border py-4 transition-colors ${
           dragOver
-            ? "border-accent bg-accent/5"
+            ? "border-foreground bg-surface"
             : file
-              ? "border-accent/50 bg-surface"
-              : "border-gray-border bg-surface hover:border-gray-light"
+              ? "border-foreground bg-white"
+              : "border-gray-border bg-white hover:border-gray-light"
         }`}
       >
         {file ? (
-          <>
-            <svg
-              className="h-6 w-6 text-accent"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <p className="text-sm text-foreground">{file.name}</p>
-            <p className="text-xs text-gray-light">
-              Click or drop to replace
-            </p>
-          </>
+          <p className="text-sm text-foreground">
+            <span className="font-medium">{file.name}</span>
+            <span className="ml-2 text-gray-light">
+              (click to replace)
+            </span>
+          </p>
         ) : (
-          <>
-            <svg
-              className="h-8 w-8 text-gray-light"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            <p className="text-sm text-gray">
-              Drop a file here, or click to browse
-            </p>
-            <p className="text-xs text-gray-light">PDF, DOCX, or PPTX</p>
-          </>
+          <p className="text-sm text-gray-light">
+            Or drop a file here (PDF, DOCX, PPTX)
+          </p>
         )}
         <input
           ref={fileInputRef}
@@ -183,15 +162,13 @@ export default function InputArea() {
       </div>
 
       {error && (
-        <p className="text-center text-sm" style={{ color: "var(--score-red)" }}>
-          {error}
-        </p>
+        <p className="text-center text-sm text-red-700">{error}</p>
       )}
 
       <button
         onClick={handleSubmit}
         disabled={!text.trim() && !file}
-        className="w-full rounded-xl bg-accent py-4 text-base font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed"
+        className="rounded-lg border border-foreground bg-foreground px-10 py-3 text-base font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30"
       >
         Review
       </button>
