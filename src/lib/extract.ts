@@ -1,5 +1,4 @@
 import mammoth from "mammoth";
-import pdfParse from "pdf-parse";
 import JSZip from "jszip";
 
 export async function extractText(
@@ -20,8 +19,10 @@ export async function extractText(
 }
 
 async function extractPDF(buffer: Buffer): Promise<string> {
-  const data = await pdfParse(buffer);
-  return data.text;
+  const { extractText: pdfExtract } = await import("unpdf");
+  const result = await pdfExtract(new Uint8Array(buffer));
+  const pages = result.text as string[];
+  return pages.join("\n\n");
 }
 
 async function extractDOCX(buffer: Buffer): Promise<string> {
