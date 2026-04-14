@@ -12,64 +12,66 @@ function stampColor(score: number): string {
 }
 
 export default function VerdictSeal({ score }: VerdictSealProps) {
-  const name = ratingName(score);
+  const name = ratingName(score).toUpperCase();
   const color = stampColor(score);
+  // Scale font down for long names
+  const nameFontSize = name.length > 12 ? 16 : name.length > 8 ? 20 : 24;
 
   return (
     <svg
-      width="200"
-      height="160"
-      viewBox="0 0 200 160"
+      width="180"
+      height="140"
+      viewBox="0 0 180 140"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="shrink-0"
     >
       {/* Outer rounded rectangle */}
       <rect
-        x="4" y="4" width="192" height="152" rx="12"
+        x="3" y="3" width="174" height="134" rx="10"
         stroke={color} strokeWidth="3" fill="none"
       />
       {/* Inner rounded rectangle */}
       <rect
-        x="12" y="12" width="176" height="136" rx="8"
+        x="10" y="10" width="160" height="120" rx="6"
         stroke={color} strokeWidth="1" fill="none"
       />
       {/* Rating name at top */}
       <text
-        x="100" y="48"
+        x="90" y="38"
         textAnchor="middle"
         dominantBaseline="central"
         fontFamily="'EB Garamond', Georgia, serif"
-        fontSize="24"
+        fontSize={nameFontSize}
         fontWeight="700"
         fill={color}
-        letterSpacing="0.05em"
+        letterSpacing="0.08em"
       >
-        {name.toUpperCase()}
+        {name}
       </text>
       {/* Divider line */}
-      <line x1="40" y1="64" x2="160" y2="64" stroke={color} strokeWidth="1.5" />
-      {/* Score number — big and bold */}
+      <line x1="30" y1="52" x2="150" y2="52" stroke={color} strokeWidth="1.5" />
+      {/* Score number */}
       <text
-        x="100" y="96"
+        x="90" y="82"
         textAnchor="middle"
         dominantBaseline="central"
         fontFamily="'EB Garamond', Georgia, serif"
-        fontSize="48"
+        fontSize="40"
         fontWeight="700"
         fill={color}
       >
         {score}/100
       </text>
       {/* Divider line */}
-      <line x1="40" y1="118" x2="160" y2="118" stroke={color} strokeWidth="1.5" />
+      <line x1="30" y1="102" x2="150" y2="102" stroke={color} strokeWidth="1.5" />
       {/* Bottom label */}
       <text
-        x="100" y="138"
+        x="90" y="120"
         textAnchor="middle"
         dominantBaseline="central"
         fontFamily="'Inter', sans-serif"
-        fontSize="10"
+        fontSize="9"
         fontWeight="600"
         fill={color}
         letterSpacing="0.2em"
