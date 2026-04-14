@@ -32,8 +32,9 @@ Rate the document on three categories, each on a scale of 0.5 to 5.0 in 0.5 incr
 ### Part 4: Category Feedback
 
 For each category, provide:
-1. What's working and what isn't — 2-3 sentences, referencing specific content from the document.
-2. How to improve — 1-2 specific, actionable suggestions. Not "make it clearer" but "move the recommendation to the opening paragraph."
+1. A headline: a single bold sentence (max 15 words) that captures the judgment for this category. Like a newspaper headline — punchy and direct.
+2. What's happening (diagnosis): 2-3 sentences analyzing the current state, referencing specific content from the document. This goes on the left side of a two-column layout.
+3. What to do (prescription): 1-2 specific, actionable recommendations. Not "make it clearer" but "move the recommendation to the opening paragraph." This goes on the right side. If the category scores 4.5+, you can say something like "No significant changes needed here."
 
 ## Important
 
@@ -54,10 +55,13 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       "intent",
       "delivery",
       "narrative",
+      "intent_headline",
       "intent_feedback",
       "intent_improvement",
+      "delivery_headline",
       "delivery_feedback",
       "delivery_improvement",
+      "narrative_headline",
       "narrative_feedback",
       "narrative_improvement",
     ],
@@ -90,34 +94,41 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
         type: "number" as const,
         description: "Narrative score from 0.5 to 5.0 in 0.5 increments",
       },
+      intent_headline: {
+        type: "string" as const,
+        description: "Bold 1-sentence headline for Intent (max 15 words)",
+      },
       intent_feedback: {
         type: "string" as const,
-        description:
-          "2-3 sentences on what's working and what isn't for Intent",
+        description: "2-3 sentences diagnosing what's happening with Intent",
       },
       intent_improvement: {
         type: "string" as const,
-        description: "1-2 specific, actionable suggestions for improving Intent",
+        description: "1-2 specific prescriptions for improving Intent",
+      },
+      delivery_headline: {
+        type: "string" as const,
+        description: "Bold 1-sentence headline for Delivery (max 15 words)",
       },
       delivery_feedback: {
         type: "string" as const,
-        description:
-          "2-3 sentences on what's working and what isn't for Delivery",
+        description: "2-3 sentences diagnosing what's happening with Delivery",
       },
       delivery_improvement: {
         type: "string" as const,
-        description:
-          "1-2 specific, actionable suggestions for improving Delivery",
+        description: "1-2 specific prescriptions for improving Delivery",
+      },
+      narrative_headline: {
+        type: "string" as const,
+        description: "Bold 1-sentence headline for Narrative (max 15 words)",
       },
       narrative_feedback: {
         type: "string" as const,
-        description:
-          "2-3 sentences on what's working and what isn't for Narrative",
+        description: "2-3 sentences diagnosing what's happening with Narrative",
       },
       narrative_improvement: {
         type: "string" as const,
-        description:
-          "1-2 specific, actionable suggestions for improving Narrative",
+        description: "1-2 specific prescriptions for improving Narrative",
       },
     },
   },
@@ -177,18 +188,21 @@ export async function evaluateDocument(
       {
         name: "Intent",
         score: intentScore,
+        headline: input.intent_headline as string,
         feedback: input.intent_feedback as string,
         improvement: input.intent_improvement as string,
       },
       {
         name: "Delivery",
         score: deliveryScore,
+        headline: input.delivery_headline as string,
         feedback: input.delivery_feedback as string,
         improvement: input.delivery_improvement as string,
       },
       {
         name: "Narrative",
         score: narrativeScore,
+        headline: input.narrative_headline as string,
         feedback: input.narrative_feedback as string,
         improvement: input.narrative_improvement as string,
       },

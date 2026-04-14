@@ -1,6 +1,7 @@
 export interface CategoryEvaluation {
   name: string;
   score: number; // 0.5-5.0 in 0.5 increments
+  headline: string;
   feedback: string;
   improvement: string;
 }

@@ -76,7 +76,7 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
 
   return (
     <div className="flex flex-col items-center px-6 py-16">
-      <div className="w-full max-w-3xl space-y-10">
+      <div className="w-full max-w-2xl space-y-10">
         <ScoreDisplay result={result} />
 
         <hr className="border-gray-border" />
