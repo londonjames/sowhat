@@ -83,10 +83,10 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
 
   return (
     <div className="flex flex-col items-center px-6 py-16">
-      <div className="w-full max-w-2xl space-y-10">
+      <div className="w-full max-w-2xl">
         <ScoreDisplay result={{ ...result, rating_name: ratingNameVal, verdict }} />
 
-        {/* Short centered divider — like Profiler between verdict and sections */}
+        {/* Short centered divider */}
         <div className="flex justify-center py-4">
           <div className="h-px w-16 bg-foreground" />
         </div>
@@ -97,18 +97,16 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
         />
 
         {/* Full horizontal rule before category sections */}
-        <hr className="border-foreground/20" />
+        <hr className="mt-8 mb-6 border-foreground/20" />
 
-        <div>
-          {result.categories.map((cat, i) => (
-            <div key={cat.name}>
-              <CategoryCard category={cat} />
-              {i < result.categories.length - 1 && (
-                <hr className="border-foreground/20" />
-              )}
-            </div>
-          ))}
-        </div>
+        {result.categories.map((cat, i) => (
+          <div key={cat.name}>
+            <CategoryCard category={cat} />
+            {i < result.categories.length - 1 && (
+              <hr className="my-4 border-foreground/20" />
+            )}
+          </div>
+        ))}
 
         <div className="mt-8 flex items-center justify-center gap-4">
           <button
