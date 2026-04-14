@@ -38,7 +38,7 @@ For each category, provide:
 
 ## Important
 
-- Be calibrated. A competent, well-researched document with real data and clear structure should score 3.5-4. Reserve 2-3 for documents with genuine structural problems. A 4.5+ means outstanding work that needs almost no revision. Not every document needs a crisp "ask" — strategy discussions, alignment memos, and informational briefings are valid formats.
+- Be calibrated generously. Most professional documents that reach the point of being reviewed are competent work. A well-researched document with real data and clear structure should score 4-4.5. A 3-3.5 means there are real problems. Below 3 is rare and means the document is fundamentally broken. A document doesn't need a crisp "ask" to score well — strategy discussions, alignment memos, and informational briefings are valid formats. When in doubt, score higher not lower.
 - Be specific. Reference actual content from the document.
 - Be concise. Every sentence should earn its place. No filler.
 - Use half-star increments only: 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0.`;
