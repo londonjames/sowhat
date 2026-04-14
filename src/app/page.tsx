@@ -2,10 +2,10 @@ import Image from "next/image";
 import InputArea from "@/components/InputArea";
 
 const SCALE_ITEMS = [
-  { n: 1, label: "Nope", color: "#8b3a3a", stamp: "/stamps/lost.png" },
+  { n: 1, label: "Nope", color: "#8b3a3a", stamp: "/stamps/nope.png" },
   { n: 2, label: "Lost", color: "#8b3a3a" },
   { n: 3, label: "Muddled", color: "#8b6914" },
-  { n: 4, label: "Hazy", color: "#1a5a8a", stamp: "/stamps/getting-there.png" },
+  { n: 4, label: "Hazy", color: "#1a5a8a", stamp: "/stamps/hazy.png" },
   { n: 5, label: "Getting There", color: "#1a5a8a" },
   { n: 6, label: "On Point", color: "#1a6b35" },
   { n: 7, label: "Crystal Clear", color: "#1a6b35", stamp: "/stamps/crystal-clear.png" },
