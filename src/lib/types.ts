@@ -31,11 +31,11 @@ export function calculateOverall(
 export function ratingName(score: number): string {
   if (score >= 90) return "Crystal Clear";
   if (score >= 80) return "On Point";
-  if (score >= 70) return "In the Right Direction";
+  if (score >= 70) return "Getting There";
   if (score >= 60) return "Hazy";
   if (score >= 40) return "Muddled";
-  if (score >= 20) return "Adrift";
-  return "Lost";
+  if (score >= 20) return "Lost";
+  return "Nope";
 }
 
 export function scoreColor(score: number): string {
