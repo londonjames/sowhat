@@ -103,7 +103,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
                   </span>
                   {hasBoldPrefix ? (
                     <span>
-                      <span className="font-bold text-foreground">
+                      <span className="font-semibold text-foreground">
                         {action.slice(0, colonIdx + 1)}
                       </span>{" "}
                       {action.slice(colonIdx + 1).trim()}
