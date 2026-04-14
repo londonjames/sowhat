@@ -11,9 +11,9 @@ Read the document carefully. Then produce a structured evaluation using the subm
 
 ### Part 1: The Main So What
 
-Identify the overarching message of the document in one clear sentence. Then list 2-3 supporting takeaways as bullet points. Lead with the most important point. Be concise — each bullet should be one sentence.
+Identify the overarching message in one sentence (maximum 25 words — it must fit on two lines of a page). Then list 2-3 supporting takeaways as bullet points. Each bullet must be one sentence, maximum 20 words. Brevity is non-negotiable.
 
-If the document is confusing, say so honestly: "It's unclear what this document is asking for" and list what you can piece together.
+If the document is confusing, say so honestly and list what you can piece together.
 
 ### Part 2: Verdict
 
@@ -33,7 +33,7 @@ Rate the document on three categories, each on a scale of 0.5 to 5.0 in 0.5 incr
 
 For each category, provide:
 1. A headline: a single bold sentence (max 15 words) that captures the judgment for this category. Like a newspaper headline — punchy and direct.
-2. Current state (diagnosis): 2-4 pithy observations about the current state, referencing specific content. Each should be one sentence. Keep it tight — these display as bullet points in a narrow column.
+2. Current state (diagnosis): 2-3 short observations about the current state. Each MUST be one sentence, maximum 20 words. These display as bullet points in a narrow column — brevity is critical. Total across all bullets should not exceed 60 words.
 3. Action items (prescription): 1-3 specific, numbered action items. Each must start with a SHORT BOLDED PREFIX IN CAPS followed by a colon, then the detail. Example: "LEAD WITH THE DECISION: Move the break-even timeline and investment requirements to page 1." The prefix should be 2-5 words that capture the action. If the category scores 4.5+, a single item like "NO CHANGES NEEDED: This section is strong as-is." is fine.
 
 ## Important

@@ -29,8 +29,8 @@ export default function CategoryCard({ category }: CategoryCardProps) {
     <section className="py-6">
       <div className="flex items-center gap-4">
         <h2
-          className="text-lg uppercase tracking-[0.2em] text-gray-light"
-          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          className="text-lg uppercase tracking-[0.2em]"
+          style={{ fontFamily: "var(--font-inter), sans-serif", color: "#1a5a8a" }}
         >
           {CATEGORY_NUMBER[category.name]} {category.name}
         </h2>
@@ -46,7 +46,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       <div className="mt-6 grid grid-cols-[1fr_auto_1fr] gap-6 items-start">
         <div>
           <p
-            className="text-xs uppercase tracking-[0.15em] text-gray-light"
+            className="text-xs font-semibold uppercase tracking-[0.15em] text-gray"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             Current State
@@ -83,20 +83,15 @@ export default function CategoryCard({ category }: CategoryCardProps) {
 
         <div>
           <p
-            className="text-xs uppercase tracking-[0.15em] text-gray-light"
+            className="text-xs font-semibold uppercase tracking-[0.15em] text-gray"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
-            Action Items
+            Recommended Action Items
           </p>
           <ol className="mt-3 space-y-3">
             {actions.map((action, i) => {
-              // Parse "BOLD PREFIX: rest of text" pattern
               const colonIdx = action.indexOf(":");
-              const hasBoldPrefix =
-                colonIdx > 0 &&
-                colonIdx < 60 &&
-                action.slice(0, colonIdx).toUpperCase() ===
-                  action.slice(0, colonIdx);
+              const hasBoldPrefix = colonIdx > 0 && colonIdx < 60;
 
               return (
                 <li
