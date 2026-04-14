@@ -25,7 +25,7 @@ export default function Home() {
         <p className="mt-4 text-xl text-gray md:text-2xl">
           Is its <span className="font-bold">intent</span> clear? Does it{" "}
           <span className="font-bold">deliver</span>? Is there a{" "}
-          <span className="font-bold">narrative</span>?
+          strong <span className="font-bold">narrative</span>?
         </p>
 
         {/* Stamp scale */}
