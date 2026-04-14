@@ -19,36 +19,37 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       : [];
 
   return (
-    <section className="py-5">
+    <section className="py-6">
       <div className="flex items-center gap-4">
-        <h2 className="text-base uppercase tracking-[0.2em] text-gray-light md:text-lg">
+        <h2
+          className="text-lg uppercase tracking-[0.2em] text-gray-light"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+        >
           {CATEGORY_NUMBER[category.name]} {category.name}
         </h2>
         <StarRating rating={category.score} />
       </div>
 
       {category.headline && (
-        <p
-          className="mt-3 text-2xl font-semibold leading-snug text-foreground"
-          style={{ fontFamily: "var(--font-garamond), Georgia, serif" }}
-        >
+        <p className="mt-3 text-2xl font-semibold leading-snug text-foreground">
           {category.headline}
         </p>
       )}
 
-      <div className="mt-5 grid grid-cols-[1fr_auto_1fr] gap-5 items-start">
-        {/* Diagnosis */}
+      <div className="mt-6 grid grid-cols-[1fr_auto_1fr] gap-6 items-start">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light">
+          <p
+            className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          >
             What&rsquo;s happening
           </p>
-          <p className="mt-2 text-[0.95rem] leading-relaxed text-gray">
+          <p className="mt-3 text-lg leading-relaxed text-gray">
             {category.feedback}
           </p>
         </div>
 
-        {/* Arrow */}
-        <div className="flex items-start pt-6 text-gray-border">
+        <div className="flex items-start pt-8 text-gray-border">
           <svg
             width="20"
             height="20"
@@ -65,16 +66,18 @@ export default function CategoryCard({ category }: CategoryCardProps) {
           </svg>
         </div>
 
-        {/* Action Items */}
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light">
+          <p
+            className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          >
             Action Items
           </p>
-          <ol className="mt-2 space-y-2">
+          <ol className="mt-3 space-y-3">
             {actions.map((action, i) => (
               <li
                 key={i}
-                className="flex gap-2 text-[0.95rem] leading-relaxed text-gray"
+                className="flex gap-2.5 text-lg leading-relaxed text-gray"
               >
                 <span className="shrink-0 font-semibold text-foreground">
                   {i + 1}.

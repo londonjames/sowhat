@@ -21,11 +21,12 @@
   --color-gray-light: var(--gray-light);
   --color-gray-border: var(--gray-border);
   --color-accent: var(--accent);
+  --font-serif: var(--font-garamond);
   --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-garamond), Georgia, serif;
 }
