@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "What's the So What?",
   description: "Paste a document. Find out if your point lands.",
+  icons: {
+    icon: { url: "/icon.svg", type: "image/svg+xml" },
+  },
 };
 
 export default function RootLayout({
