@@ -146,7 +146,7 @@ export default function InputArea() {
           </p>
         ) : (
           <p className="text-sm text-gray-light">
-            Or drop a file here (PDF, DOCX, PPTX)
+            Or add a file here (e.g., PDF, DOC, PPT)
           </p>
         )}
         <input
