@@ -19,24 +19,24 @@ export default function ScoreDisplay({ result }: ScoreDisplayProps) {
   const stampSrc = STAMP_IMAGES[result.rating_name] || STAMP_IMAGES["Muddled"];
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-3">
       <Image
         src={stampSrc}
         alt={result.rating_name}
-        width={320}
+        width={500}
         height={200}
-        className="h-auto w-[280px]"
+        className="h-auto w-[420px]"
         priority
       />
       <p
-        className="max-w-lg text-center text-2xl leading-relaxed"
+        className="max-w-xl text-center text-[1.7rem] leading-snug"
         style={{ fontFamily: "var(--font-garamond), Georgia, serif" }}
       >
         <span className="font-bold">{result.overall}/100</span>
         {result.verdict && (
           <>
             {" — "}
-            <span className="italic">{result.verdict}</span>
+            <span className="font-bold italic">{result.verdict}</span>
           </>
         )}
       </p>

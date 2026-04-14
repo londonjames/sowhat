@@ -7,12 +7,12 @@ export default function MirrorSection({ lead, bullets }: MirrorSectionProps) {
   return (
     <div>
       <h2
-        className="text-sm uppercase tracking-[0.2em] text-gray-light"
+        className="text-base uppercase tracking-[0.2em] text-gray-light md:text-lg"
         style={{ fontFamily: "var(--font-inter), sans-serif" }}
       >
-        The Main So What That Comes Through
+        The Main So What Coming Through
       </h2>
-      <p className="mt-5 text-3xl font-semibold leading-snug text-foreground">
+      <p className="mt-4 text-2xl font-semibold leading-snug text-foreground">
         {lead}
       </p>
       {bullets.length > 0 && (
