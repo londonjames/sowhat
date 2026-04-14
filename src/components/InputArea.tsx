@@ -116,7 +116,7 @@ export default function InputArea() {
         value={text}
         onChange={handleTextChange}
         placeholder="Paste your document here..."
-        rows={6}
+        rows={4}
         autoFocus
         className="w-full resize-y rounded-lg border border-gray-border bg-white px-5 py-4 text-base leading-relaxed text-foreground placeholder:text-gray-light outline-none transition-colors focus:border-foreground"
       />
@@ -145,7 +145,7 @@ export default function InputArea() {
             </span>
           </p>
         ) : (
-          <p className="text-sm text-gray-light">
+          <p className="text-base text-gray-light">
             Or add a file here (e.g., PDF, DOC, PPT)
           </p>
         )}

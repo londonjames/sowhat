@@ -1,6 +1,16 @@
 import Image from "next/image";
 import InputArea from "@/components/InputArea";
 
+const SCALE_ITEMS = [
+  { n: 1, label: "Nope", color: "#8b3a3a", stamp: "/stamps/lost.png" },
+  { n: 2, label: "Lost", color: "#8b3a3a" },
+  { n: 3, label: "Muddled", color: "#8b6914" },
+  { n: 4, label: "Hazy", color: "#1a5a8a", stamp: "/stamps/getting-there.png" },
+  { n: 5, label: "Getting There", color: "#1a5a8a" },
+  { n: 6, label: "On Point", color: "#1a6b35" },
+  { n: 7, label: "Crystal Clear", color: "#1a6b35", stamp: "/stamps/crystal-clear.png" },
+];
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center px-6 pt-16 pb-16">
@@ -10,7 +20,7 @@ export default function Home() {
           className="text-3xl font-medium italic tracking-tight md:text-4xl"
           style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: "#1a5a8a" }}
         >
-          Does your document convey a Clear So What?
+          Does Your Document Convey A Clear So What?
         </h1>
         <p className="mt-4 text-xl text-gray md:text-2xl">
           Is its <span className="font-bold">intent</span> clear? Does it{" "}
@@ -20,30 +30,14 @@ export default function Home() {
 
         {/* Stamp scale */}
         <div className="mt-8 w-full">
-          {/* Stamps row — 3 images at positions 1, 4, 7 on a 7-point scale */}
+          {/* Stamps row */}
           <div className="flex items-end">
-            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-              <div key={n} className="flex min-w-0 flex-1 justify-center overflow-visible">
-                {n === 1 ? (
+            {SCALE_ITEMS.map((item) => (
+              <div key={item.n} className="flex min-w-0 flex-1 justify-center overflow-visible">
+                {item.stamp ? (
                   <Image
-                    src="/stamps/lost.png"
-                    alt="Lost"
-                    width={200}
-                    height={100}
-                    className="h-auto w-[170px] max-w-none shrink-0"
-                  />
-                ) : n === 4 ? (
-                  <Image
-                    src="/stamps/getting-there.png"
-                    alt="Getting There"
-                    width={200}
-                    height={100}
-                    className="h-auto w-[170px] max-w-none shrink-0"
-                  />
-                ) : n === 7 ? (
-                  <Image
-                    src="/stamps/crystal-clear.png"
-                    alt="Crystal Clear"
+                    src={item.stamp}
+                    alt={item.label}
                     width={200}
                     height={100}
                     className="h-auto w-[170px] max-w-none shrink-0"
@@ -59,10 +53,10 @@ export default function Home() {
           <div className="relative mt-1" style={{ height: 16 }}>
             <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-black" />
             <div className="relative flex h-full">
-              {[1, 2, 3, 4, 5, 6, 7].map((n) => {
-                const isAnchor = n === 1 || n === 4 || n === 7;
+              {SCALE_ITEMS.map((item) => {
+                const isAnchor = !!item.stamp;
                 return (
-                  <div key={n} className="flex min-w-0 flex-1 items-start justify-center">
+                  <div key={item.n} className="flex min-w-0 flex-1 items-start justify-center">
                     <div
                       className={`bg-black ${isAnchor ? "h-4 w-px" : "h-2.5 w-px"}`}
                       style={{ marginTop: isAnchor ? 0 : 3 }}
@@ -73,51 +67,30 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Labels — only on anchors */}
+          {/* Labels — all positions */}
           <div className="mt-1 flex">
-            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-              <div key={n} className="flex min-w-0 flex-1 flex-col items-center overflow-visible">
-                {n === 1 ? (
-                  <>
-                    <span className="text-sm font-medium text-black">1</span>
-                    <span
-                      className="mt-0.5 text-lg font-bold italic"
-                      style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: "#8b3a3a" }}
-                    >
-                      Lost
-                    </span>
-                  </>
-                ) : n === 4 ? (
-                  <>
-                    <span className="text-sm font-medium text-black">4</span>
-                    <span
-                      className="mt-0.5 text-lg font-bold italic"
-                      style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: "#1a5a8a" }}
-                    >
-                      Getting There
-                    </span>
-                  </>
-                ) : n === 7 ? (
-                  <>
-                    <span className="text-sm font-medium text-black">7</span>
-                    <span
-                      className="mt-0.5 text-lg font-bold italic"
-                      style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: "#1a6b35" }}
-                    >
-                      Crystal Clear
-                    </span>
-                  </>
-                ) : (
-                  <span className="text-xs text-gray-light">{n}</span>
-                )}
-              </div>
-            ))}
+            {SCALE_ITEMS.map((item) => {
+              const isAnchor = !!item.stamp;
+              return (
+                <div key={item.n} className="flex min-w-0 flex-1 flex-col items-center overflow-visible">
+                  <span className={isAnchor ? "text-sm font-medium text-black" : "text-xs text-gray-light"}>
+                    {item.n}
+                  </span>
+                  <span
+                    className={`mt-0.5 whitespace-nowrap ${isAnchor ? "text-lg font-bold italic" : "text-xs italic"}`}
+                    style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: item.color }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Input */}
-        <div className="mt-6">
-          <p className="text-base text-gray">
+        <div className="mt-8">
+          <p className="text-lg text-gray md:text-xl">
             Paste your document below, or add a file.
           </p>
         </div>
