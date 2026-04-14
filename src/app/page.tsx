@@ -67,21 +67,25 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Labels — all positions */}
+          {/* Labels — only non-stamp positions (stamps already show their name) */}
           <div className="mt-1 flex">
             {SCALE_ITEMS.map((item) => {
               const isAnchor = !!item.stamp;
               return (
                 <div key={item.n} className="flex min-w-0 flex-1 flex-col items-center overflow-visible">
-                  <span className={isAnchor ? "text-sm font-medium text-black" : "text-xs text-gray-light"}>
-                    {item.n}
-                  </span>
-                  <span
-                    className={`mt-0.5 whitespace-nowrap ${isAnchor ? "text-lg font-bold italic" : "text-xs italic"}`}
-                    style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: item.color }}
-                  >
-                    {item.label}
-                  </span>
+                  {isAnchor ? (
+                    <span className="text-sm font-medium text-black">{item.n}</span>
+                  ) : (
+                    <>
+                      <span className="text-xs text-gray-light">{item.n}</span>
+                      <span
+                        className="mt-0.5 whitespace-nowrap text-sm italic"
+                        style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: item.color }}
+                      >
+                        {item.label}
+                      </span>
+                    </>
+                  )}
                 </div>
               );
             })}
