@@ -4,83 +4,77 @@ interface VerdictSealProps {
   score: number;
 }
 
-const SEAL_COLORS: Record<string, { ring: string; text: string; bg: string }> = {
-  "Crystal Clear": { ring: "#16a34a", text: "#16a34a", bg: "#f0fdf4" },
-  "On Point": { ring: "#16a34a", text: "#16a34a", bg: "#f0fdf4" },
-  "In the Right Direction": { ring: "#d97706", text: "#d97706", bg: "#fffbeb" },
-  "Hazy": { ring: "#d97706", text: "#d97706", bg: "#fffbeb" },
-  "Muddled": { ring: "#dc2626", text: "#dc2626", bg: "#fef2f2" },
-  "Adrift": { ring: "#dc2626", text: "#dc2626", bg: "#fef2f2" },
-  "Lost": { ring: "#dc2626", text: "#dc2626", bg: "#fef2f2" },
-};
+function stampColor(score: number): string {
+  if (score >= 80) return "#1a7a3a";
+  if (score >= 60) return "#1a5a8a";
+  if (score >= 40) return "#92600a";
+  return "#8b3a3a";
+}
 
 export default function VerdictSeal({ score }: VerdictSealProps) {
   const name = ratingName(score);
-  const colors = SEAL_COLORS[name] || SEAL_COLORS["Muddled"];
+  const color = stampColor(score);
 
   return (
     <svg
-      width="160"
+      width="200"
       height="160"
-      viewBox="0 0 160 160"
+      viewBox="0 0 200 160"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="shrink-0"
     >
-      {/* Outer decorative ring with notches */}
-      {Array.from({ length: 36 }).map((_, i) => {
-        const angle = (i * 10 * Math.PI) / 180;
-        const innerR = 68;
-        const outerR = 76;
-        const x1 = 80 + innerR * Math.cos(angle);
-        const y1 = 80 + innerR * Math.sin(angle);
-        const x2 = 80 + outerR * Math.cos(angle);
-        const y2 = 80 + outerR * Math.sin(angle);
-        return (
-          <line
-            key={i}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke={colors.ring}
-            strokeWidth="1.5"
-            opacity="0.4"
-          />
-        );
-      })}
-      {/* Outer circle */}
-      <circle cx="80" cy="80" r="72" stroke={colors.ring} strokeWidth="2" fill="none" />
-      {/* Inner circle */}
-      <circle cx="80" cy="80" r="62" stroke={colors.ring} strokeWidth="1" fill={colors.bg} />
-      {/* Score number */}
+      {/* Outer rounded rectangle */}
+      <rect
+        x="4" y="4" width="192" height="152" rx="12"
+        stroke={color} strokeWidth="3" fill="none"
+      />
+      {/* Inner rounded rectangle */}
+      <rect
+        x="12" y="12" width="176" height="136" rx="8"
+        stroke={color} strokeWidth="1" fill="none"
+      />
+      {/* Rating name at top */}
       <text
-        x="80"
-        y="72"
+        x="100" y="48"
         textAnchor="middle"
         dominantBaseline="central"
-        fontFamily="var(--font-garamond), Georgia, serif"
-        fontSize="42"
-        fontWeight="600"
-        fill={colors.text}
+        fontFamily="'EB Garamond', Georgia, serif"
+        fontSize="24"
+        fontWeight="700"
+        fill={color}
+        letterSpacing="0.05em"
       >
-        {score}
+        {name.toUpperCase()}
       </text>
       {/* Divider line */}
-      <line x1="50" y1="88" x2="110" y2="88" stroke={colors.ring} strokeWidth="0.75" opacity="0.5" />
-      {/* "out of 100" */}
+      <line x1="40" y1="64" x2="160" y2="64" stroke={color} strokeWidth="1.5" />
+      {/* Score number — big and bold */}
       <text
-        x="80"
-        y="102"
+        x="100" y="96"
         textAnchor="middle"
         dominantBaseline="central"
-        fontFamily="var(--font-inter), sans-serif"
-        fontSize="10"
-        fontWeight="500"
-        fill={colors.text}
-        opacity="0.7"
-        letterSpacing="0.1em"
+        fontFamily="'EB Garamond', Georgia, serif"
+        fontSize="48"
+        fontWeight="700"
+        fill={color}
       >
-        OUT OF 100
+        {score}/100
+      </text>
+      {/* Divider line */}
+      <line x1="40" y1="118" x2="160" y2="118" stroke={color} strokeWidth="1.5" />
+      {/* Bottom label */}
+      <text
+        x="100" y="138"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontFamily="'Inter', sans-serif"
+        fontSize="10"
+        fontWeight="600"
+        fill={color}
+        letterSpacing="0.2em"
+      >
+        DOCUMENT REVIEW
       </text>
     </svg>
   );

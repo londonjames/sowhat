@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { EvaluationResult } from "@/lib/types";
+import { EvaluationResult, ratingName as computeRatingName } from "@/lib/types";
 import ScoreDisplay from "@/components/ScoreDisplay";
 import MirrorSection from "@/components/MirrorSection";
 import CategoryCard from "@/components/CategoryCard";
@@ -78,13 +78,13 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
   const r = result as EvaluationResult & { mirror?: string };
   const mirrorLead = r.mirror_lead || r.mirror || "";
   const mirrorBullets = r.mirror_bullets || [];
-  const ratingName = r.rating_name || "Reviewed";
+  const ratingNameVal = r.rating_name || computeRatingName(r.overall);
   const verdict = r.verdict || "";
 
   return (
     <div className="flex flex-col items-center px-6 py-16">
       <div className="w-full max-w-2xl space-y-10">
-        <ScoreDisplay result={{ ...result, rating_name: ratingName, verdict }} />
+        <ScoreDisplay result={{ ...result, rating_name: ratingNameVal, verdict }} />
 
         <hr className="border-gray-border" />
 
