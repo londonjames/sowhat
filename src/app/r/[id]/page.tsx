@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { EvaluationResult } from "@/lib/types";
-import MirrorSection from "@/components/MirrorSection";
 import ScoreDisplay from "@/components/ScoreDisplay";
+import MirrorSection from "@/components/MirrorSection";
 import CategoryCard from "@/components/CategoryCard";
 
 function getSessionResult(): EvaluationResult | null {
@@ -28,8 +28,7 @@ export default function SavedReviewPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (cachedResult) return; // Already have data from sessionStorage
-
+    if (cachedResult) return;
     const id = params.id as string;
     if (!id) return;
     fetch(`/api/review?id=${id}`)
@@ -69,18 +68,34 @@ export default function SavedReviewPage() {
     );
   }
 
+  return <ReviewLayout result={result} />;
+}
+
+function ReviewLayout({ result }: { result: EvaluationResult }) {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col items-center px-6 py-12">
-      <div className="w-full max-w-2xl space-y-10">
-        <MirrorSection text={result.mirror} />
+    <div className="flex flex-col items-center px-6 py-16">
+      <div className="w-full max-w-3xl space-y-10">
+        <ScoreDisplay result={result} />
 
-        <div className="flex justify-center py-4">
-          <ScoreDisplay score={result.overall} />
-        </div>
+        <hr className="border-gray-border" />
 
-        <div className="space-y-4">
-          {result.categories.map((cat) => (
-            <CategoryCard key={cat.name} category={cat} />
+        <MirrorSection
+          lead={result.mirror_lead}
+          bullets={result.mirror_bullets}
+        />
+
+        <hr className="border-gray-border" />
+
+        <div className="space-y-10">
+          {result.categories.map((cat, i) => (
+            <div key={cat.name}>
+              <CategoryCard category={cat} />
+              {i < result.categories.length - 1 && (
+                <hr className="mt-10 border-gray-border" />
+              )}
+            </div>
           ))}
         </div>
 

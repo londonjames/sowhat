@@ -3,7 +3,7 @@
 import { useId } from "react";
 
 interface StarRatingProps {
-  rating: number; // 0.5-5.0 in 0.5 steps
+  rating: number;
 }
 
 export default function StarRating({ rating }: StarRatingProps) {
@@ -31,13 +31,11 @@ function Star({
 }) {
   const path =
     "M10 1.5l2.47 5.01L18.5 7.4l-4.25 4.14 1 5.83L10 14.48l-5.25 2.89 1-5.83L1.5 7.4l6.03-.89L10 1.5z";
-  const gold = "var(--star-gold)";
-  const dim = "var(--gray-border)";
 
   if (fill === "full") {
     return (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d={path} fill={gold} stroke={gold} strokeWidth="1" />
+        <path d={path} fill="black" stroke="black" strokeWidth="1" />
       </svg>
     );
   }
@@ -50,15 +48,15 @@ function Star({
             <rect x="0" y="0" width="10" height="20" />
           </clipPath>
         </defs>
-        <path d={path} fill={gold} clipPath={`url(#${clipId})`} />
-        <path d={path} fill="none" stroke={gold} strokeWidth="1" />
+        <path d={path} fill="black" clipPath={`url(#${clipId})`} />
+        <path d={path} fill="none" stroke="black" strokeWidth="1" />
       </svg>
     );
   }
 
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path d={path} fill="none" stroke={dim} strokeWidth="1" />
+      <path d={path} fill="none" stroke="black" strokeWidth="1" />
     </svg>
   );
 }

@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { EvaluationResult } from "@/lib/types";
-import MirrorSection from "@/components/MirrorSection";
 import ScoreDisplay from "@/components/ScoreDisplay";
+import MirrorSection from "@/components/MirrorSection";
 import CategoryCard from "@/components/CategoryCard";
 
 function getStoredResult(): EvaluationResult | null {
@@ -34,26 +34,33 @@ export default function ReviewPage() {
   }
 
   return (
-    <div className="flex flex-col items-center px-6 py-12">
-      <div className="w-full max-w-2xl space-y-10">
-        <MirrorSection text={result.mirror} />
+    <div className="flex flex-col items-center px-6 py-16">
+      <div className="w-full max-w-3xl space-y-10">
+        <ScoreDisplay result={result} />
 
-        <div className="flex justify-center py-4">
-          <ScoreDisplay score={result.overall} />
-        </div>
+        <hr className="border-gray-border" />
 
-        <div className="space-y-4">
-          {result.categories.map((cat) => (
-            <CategoryCard key={cat.name} category={cat} />
+        <MirrorSection
+          lead={result.mirror_lead}
+          bullets={result.mirror_bullets}
+        />
+
+        <hr className="border-gray-border" />
+
+        <div className="space-y-10">
+          {result.categories.map((cat, i) => (
+            <div key={cat.name}>
+              <CategoryCard category={cat} />
+              {i < result.categories.length - 1 && (
+                <hr className="mt-10 border-gray-border" />
+              )}
+            </div>
           ))}
         </div>
 
         <div className="flex justify-center pt-4 pb-8">
           <button
-            onClick={() => {
-              sessionStorage.removeItem("sowhat_result");
-              router.push("/");
-            }}
+            onClick={() => router.push("/")}
             className="rounded-xl border border-gray-border px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
           >
             Review Another Document

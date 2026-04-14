@@ -6,18 +6,35 @@ export interface CategoryEvaluation {
 }
 
 export interface EvaluationResult {
-  mirror: string;
+  mirror_lead: string;
+  mirror_bullets: string[];
+  verdict: string;
   scores: {
     intent: number;
     delivery: number;
     narrative: number;
   };
-  overall: number; // 0-100, calculated server-side
+  overall: number;
+  rating_name: string;
   categories: CategoryEvaluation[];
 }
 
-export function calculateOverall(intent: number, delivery: number, narrative: number): number {
+export function calculateOverall(
+  intent: number,
+  delivery: number,
+  narrative: number
+): number {
   return Math.round((intent / 5) * 20 + (delivery / 5) * 50 + (narrative / 5) * 30);
+}
+
+export function ratingName(score: number): string {
+  if (score >= 90) return "Crystal Clear";
+  if (score >= 80) return "On Point";
+  if (score >= 70) return "In the Right Direction";
+  if (score >= 60) return "Hazy";
+  if (score >= 40) return "Muddled";
+  if (score >= 20) return "Adrift";
+  return "Lost";
 }
 
 export function scoreColor(score: number): string {
