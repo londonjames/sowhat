@@ -18,6 +18,13 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       ? [category.improvement]
       : [];
 
+  // Parse feedback into bullet points (split on sentences)
+  const feedbackBullets = category.feedback
+    ? category.feedback
+        .split(/(?<=\.)\s+/)
+        .filter((s) => s.trim().length > 10)
+    : [];
+
   return (
     <section className="py-6">
       <div className="flex items-center gap-4">
@@ -31,7 +38,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       </div>
 
       {category.headline && (
-        <p className="mt-3 text-2xl font-semibold leading-snug text-foreground">
+        <p className="mt-3 text-xl font-semibold leading-snug text-foreground">
           {category.headline}
         </p>
       )}
@@ -39,14 +46,22 @@ export default function CategoryCard({ category }: CategoryCardProps) {
       <div className="mt-6 grid grid-cols-[1fr_auto_1fr] gap-6 items-start">
         <div>
           <p
-            className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light"
+            className="text-xs uppercase tracking-[0.15em] text-gray-light"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
-            What&rsquo;s happening
+            Current State
           </p>
-          <p className="mt-3 text-lg leading-relaxed text-gray">
-            {category.feedback}
-          </p>
+          <ul className="mt-3 space-y-2">
+            {feedbackBullets.map((bullet, i) => (
+              <li
+                key={i}
+                className="flex gap-2.5 text-lg leading-relaxed text-gray"
+              >
+                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gray-light" />
+                {bullet}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="flex items-start pt-8 text-gray-border">
@@ -68,23 +83,42 @@ export default function CategoryCard({ category }: CategoryCardProps) {
 
         <div>
           <p
-            className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light"
+            className="text-xs uppercase tracking-[0.15em] text-gray-light"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             Action Items
           </p>
           <ol className="mt-3 space-y-3">
-            {actions.map((action, i) => (
-              <li
-                key={i}
-                className="flex gap-2.5 text-lg leading-relaxed text-gray"
-              >
-                <span className="shrink-0 font-semibold text-foreground">
-                  {i + 1}.
-                </span>
-                {action}
-              </li>
-            ))}
+            {actions.map((action, i) => {
+              // Parse "BOLD PREFIX: rest of text" pattern
+              const colonIdx = action.indexOf(":");
+              const hasBoldPrefix =
+                colonIdx > 0 &&
+                colonIdx < 60 &&
+                action.slice(0, colonIdx).toUpperCase() ===
+                  action.slice(0, colonIdx);
+
+              return (
+                <li
+                  key={i}
+                  className="flex gap-2.5 text-lg leading-relaxed text-gray"
+                >
+                  <span className="shrink-0 font-semibold text-foreground">
+                    {i + 1}.
+                  </span>
+                  {hasBoldPrefix ? (
+                    <span>
+                      <span className="font-bold text-foreground">
+                        {action.slice(0, colonIdx + 1)}
+                      </span>{" "}
+                      {action.slice(colonIdx + 1).trim()}
+                    </span>
+                  ) : (
+                    action
+                  )}
+                </li>
+              );
+            })}
           </ol>
         </div>
       </div>

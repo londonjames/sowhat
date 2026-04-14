@@ -33,8 +33,8 @@ Rate the document on three categories, each on a scale of 0.5 to 5.0 in 0.5 incr
 
 For each category, provide:
 1. A headline: a single bold sentence (max 15 words) that captures the judgment for this category. Like a newspaper headline — punchy and direct.
-2. What's happening (diagnosis): 2-3 sentences analyzing the current state, referencing specific content from the document. This goes on the left side of a two-column layout.
-3. Action items (prescription): 1-3 specific, numbered action items. Each one should be a concrete instruction the author can act on immediately. Not "make it clearer" but "Move the recommendation to the opening paragraph." If the category scores 4.5+, a single item like "No significant changes needed." is fine.
+2. Current state (diagnosis): 2-4 pithy observations about the current state, referencing specific content. Each should be one sentence. Keep it tight — these display as bullet points in a narrow column.
+3. Action items (prescription): 1-3 specific, numbered action items. Each must start with a SHORT BOLDED PREFIX IN CAPS followed by a colon, then the detail. Example: "LEAD WITH THE DECISION: Move the break-even timeline and investment requirements to page 1." The prefix should be 2-5 words that capture the action. If the category scores 4.5+, a single item like "NO CHANGES NEEDED: This section is strong as-is." is fine.
 
 ## Important
 

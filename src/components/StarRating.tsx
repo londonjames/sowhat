@@ -6,6 +6,8 @@ interface StarRatingProps {
   rating: number;
 }
 
+const BLUE = "#1a5a8a";
+
 export default function StarRating({ rating }: StarRatingProps) {
   const id = useId();
 
@@ -35,7 +37,7 @@ function Star({
   if (fill === "full") {
     return (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d={path} fill="black" stroke="black" strokeWidth="1" />
+        <path d={path} fill={BLUE} stroke={BLUE} strokeWidth="1" />
       </svg>
     );
   }
@@ -48,15 +50,15 @@ function Star({
             <rect x="0" y="0" width="10" height="20" />
           </clipPath>
         </defs>
-        <path d={path} fill="black" clipPath={`url(#${clipId})`} />
-        <path d={path} fill="none" stroke="black" strokeWidth="1" />
+        <path d={path} fill={BLUE} clipPath={`url(#${clipId})`} />
+        <path d={path} fill="none" stroke={BLUE} strokeWidth="1" />
       </svg>
     );
   }
 
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path d={path} fill="none" stroke="black" strokeWidth="1" />
+      <path d={path} fill="none" stroke={BLUE} strokeWidth="1" />
     </svg>
   );
 }

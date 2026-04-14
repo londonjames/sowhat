@@ -110,12 +110,22 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
           ))}
         </div>
 
-        <div className="flex justify-center pt-4 pb-8">
+        <div className="mt-8 flex items-center justify-center gap-4">
           <button
             onClick={() => router.push("/")}
-            className="rounded-xl border border-gray-border px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+            className="rounded-lg border border-[#1a5a8a] bg-[#1a5a8a] px-8 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1a5a8a]"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             Review Another Document
+          </button>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+            }}
+            className="rounded-lg border border-gray-border px-8 py-3 text-sm uppercase tracking-[0.15em] text-[#1a5a8a] transition-colors hover:border-[#1a5a8a] hover:bg-[#1a5a8a] hover:text-white"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          >
+            Share This Review
           </button>
         </div>
       </div>
