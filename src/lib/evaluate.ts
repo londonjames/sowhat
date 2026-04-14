@@ -69,13 +69,13 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       mirror_lead: {
         type: "string" as const,
         description:
-          "The single overarching message/takeaway from the document in one sentence",
+          "The overarching message in ONE sentence, MAXIMUM 25 words. Must fit on two lines.",
       },
       mirror_bullets: {
         type: "array" as const,
         items: { type: "string" as const },
         description:
-          "2-3 supporting takeaways as concise bullet points (one sentence each)",
+          "2-3 supporting takeaways. Each MUST be one sentence, MAXIMUM 20 words each.",
       },
       verdict: {
         type: "string" as const,
@@ -100,7 +100,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       },
       intent_feedback: {
         type: "string" as const,
-        description: "2-3 sentences diagnosing what's happening with Intent",
+        description: "2-3 SHORT sentences (max 20 words each) on Intent's current state",
       },
       intent_improvement: {
         type: "string" as const,
@@ -109,7 +109,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       intent_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 concrete, numbered action items for Intent",
+        description: "1-3 action items for Intent. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
       },
       delivery_headline: {
         type: "string" as const,
@@ -117,7 +117,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       },
       delivery_feedback: {
         type: "string" as const,
-        description: "2-3 sentences diagnosing what's happening with Delivery",
+        description: "2-3 SHORT sentences (max 20 words each) on Delivery's current state",
       },
       delivery_improvement: {
         type: "string" as const,
@@ -126,7 +126,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       delivery_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 concrete, numbered action items for Delivery",
+        description: "1-3 action items for Delivery. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
       },
       narrative_headline: {
         type: "string" as const,
@@ -134,7 +134,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       },
       narrative_feedback: {
         type: "string" as const,
-        description: "2-3 sentences diagnosing what's happening with Narrative",
+        description: "2-3 SHORT sentences (max 20 words each) on Narrative's current state",
       },
       narrative_improvement: {
         type: "string" as const,
@@ -143,7 +143,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       narrative_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 concrete, numbered action items for Narrative",
+        description: "1-3 action items for Narrative. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
       },
     },
   },
