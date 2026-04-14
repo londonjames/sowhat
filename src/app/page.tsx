@@ -77,9 +77,9 @@ export default function Home() {
                     <span className="text-sm font-medium text-black">{item.n}</span>
                   ) : (
                     <>
-                      <span className="text-xs text-gray-light">{item.n}</span>
+                      <span className="text-sm text-gray-light">{item.n}</span>
                       <span
-                        className="mt-0.5 whitespace-nowrap text-sm italic"
+                        className="mt-0.5 whitespace-nowrap text-base font-semibold italic"
                         style={{ fontFamily: "var(--font-garamond), Georgia, serif", color: item.color }}
                       >
                         {item.label}
