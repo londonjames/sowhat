@@ -17,7 +17,7 @@ If the document is confusing, say so honestly and list what you can piece togeth
 
 ### Part 2: Verdict
 
-Write a single punchy sentence that captures the quality of the document. This should feel like a confident editorial judgment — direct and memorable. Examples of tone: "A solid proposal that buries its best argument on page 3." or "Clear intent, but the data does the heavy lifting while the narrative coasts."
+Write a single punchy sentence (maximum 20 words) that captures the quality of the document. This should feel like a confident editorial judgment — direct and memorable. Examples: "A solid proposal that buries its best argument on page 3." or "Clear intent, but the data does the heavy lifting while the narrative coasts."
 
 ### Part 3: Scoring
 
@@ -80,7 +80,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       verdict: {
         type: "string" as const,
         description:
-          "A single punchy sentence capturing the quality of the document",
+          "A single punchy sentence (max 20 words) capturing the quality of the document",
       },
       intent: {
         type: "number" as const,

@@ -86,10 +86,7 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
       <div className="w-full max-w-2xl">
         <ScoreDisplay result={{ ...result, rating_name: ratingNameVal, verdict }} />
 
-        {/* Short centered divider */}
-        <div className="flex justify-center py-4">
-          <div className="h-px w-16 bg-foreground" />
-        </div>
+        <div className="mt-6" />
 
         <MirrorSection
           lead={mirrorLead}
