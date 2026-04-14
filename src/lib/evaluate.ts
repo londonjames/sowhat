@@ -34,7 +34,7 @@ Rate the document on three categories, each on a scale of 0.5 to 5.0 in 0.5 incr
 For each category, provide:
 1. A headline: a single bold sentence (max 15 words) that captures the judgment for this category. Like a newspaper headline — punchy and direct.
 2. Current state (diagnosis): 2-3 observations about the current state. Each should be one sentence, 15-25 words. These display as bullet points in a narrow column.
-3. Action items (prescription): 1-3 specific, numbered action items. Each must start with a SHORT BOLDED PREFIX IN CAPS followed by a colon, then the detail. Example: "LEAD WITH THE DECISION: Move the break-even timeline and investment requirements to page 1." The prefix should be 2-5 words that capture the action. If the category scores 4.5+, a single item like "NO CHANGES NEEDED: This section is strong as-is." is fine.
+3. Action items (prescription): 1-3 specific, numbered action items. Each must start with a short prefix phrase (2-5 words, normal case, not caps) followed by a colon, then the detail. Example: "Lead with the decision: Move the break-even timeline and investment requirements to page 1." If the category scores 4.5+, a single item like "No changes needed: This section is strong as-is." is fine.
 
 ## Important
 
@@ -109,7 +109,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       intent_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 action items for Intent. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
+        description: "1-3 action items for Intent. Each MUST start with a short prefix phrase (normal case, not caps) followed by colon. Max 25 words each.",
       },
       delivery_headline: {
         type: "string" as const,
@@ -126,7 +126,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       delivery_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 action items for Delivery. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
+        description: "1-3 action items for Delivery. Each MUST start with a short prefix phrase (normal case, not caps) followed by colon. Max 25 words each.",
       },
       narrative_headline: {
         type: "string" as const,
@@ -143,7 +143,7 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       narrative_actions: {
         type: "array" as const,
         items: { type: "string" as const },
-        description: "1-3 action items for Narrative. Each MUST start with BOLD CAPS PREFIX followed by colon. Max 25 words each.",
+        description: "1-3 action items for Narrative. Each MUST start with a short prefix phrase (normal case, not caps) followed by colon. Max 25 words each.",
       },
     },
   },
