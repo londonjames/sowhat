@@ -39,7 +39,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
 
       {category.headline && (
         <p className="mt-3 text-xl font-semibold leading-snug text-foreground">
-          {category.headline}
+          {category.headline.replace(/\*\*/g, "")}
         </p>
       )}
 
