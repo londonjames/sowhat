@@ -34,7 +34,7 @@ Rate the document on three categories, each on a scale of 0.5 to 5.0 in 0.5 incr
 For each category, provide:
 1. A headline: a single bold sentence (max 15 words) that captures the judgment for this category. Like a newspaper headline — punchy and direct.
 2. What's happening (diagnosis): 2-3 sentences analyzing the current state, referencing specific content from the document. This goes on the left side of a two-column layout.
-3. What to do (prescription): 1-2 specific, actionable recommendations. Not "make it clearer" but "move the recommendation to the opening paragraph." This goes on the right side. If the category scores 4.5+, you can say something like "No significant changes needed here."
+3. Action items (prescription): 1-3 specific, numbered action items. Each one should be a concrete instruction the author can act on immediately. Not "make it clearer" but "Move the recommendation to the opening paragraph." If the category scores 4.5+, a single item like "No significant changes needed." is fine.
 
 ## Important
 
@@ -106,6 +106,11 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
         type: "string" as const,
         description: "1-2 specific prescriptions for improving Intent",
       },
+      intent_actions: {
+        type: "array" as const,
+        items: { type: "string" as const },
+        description: "1-3 concrete, numbered action items for Intent",
+      },
       delivery_headline: {
         type: "string" as const,
         description: "Bold 1-sentence headline for Delivery (max 15 words)",
@@ -118,6 +123,11 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
         type: "string" as const,
         description: "1-2 specific prescriptions for improving Delivery",
       },
+      delivery_actions: {
+        type: "array" as const,
+        items: { type: "string" as const },
+        description: "1-3 concrete, numbered action items for Delivery",
+      },
       narrative_headline: {
         type: "string" as const,
         description: "Bold 1-sentence headline for Narrative (max 15 words)",
@@ -129,6 +139,11 @@ const EVALUATION_TOOL: Anthropic.Messages.Tool = {
       narrative_improvement: {
         type: "string" as const,
         description: "1-2 specific prescriptions for improving Narrative",
+      },
+      narrative_actions: {
+        type: "array" as const,
+        items: { type: "string" as const },
+        description: "1-3 concrete, numbered action items for Narrative",
       },
     },
   },
@@ -191,6 +206,7 @@ export async function evaluateDocument(
         headline: input.intent_headline as string,
         feedback: input.intent_feedback as string,
         improvement: input.intent_improvement as string,
+        actions: (input.intent_actions as string[]) || [],
       },
       {
         name: "Delivery",
@@ -198,6 +214,7 @@ export async function evaluateDocument(
         headline: input.delivery_headline as string,
         feedback: input.delivery_feedback as string,
         improvement: input.delivery_improvement as string,
+        actions: (input.delivery_actions as string[]) || [],
       },
       {
         name: "Narrative",
@@ -205,6 +222,7 @@ export async function evaluateDocument(
         headline: input.narrative_headline as string,
         feedback: input.narrative_feedback as string,
         improvement: input.narrative_improvement as string,
+        actions: (input.narrative_actions as string[]) || [],
       },
     ],
   };

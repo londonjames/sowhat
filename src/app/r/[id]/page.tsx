@@ -86,21 +86,27 @@ function ReviewLayout({ result }: { result: EvaluationResult }) {
       <div className="w-full max-w-2xl space-y-10">
         <ScoreDisplay result={{ ...result, rating_name: ratingNameVal, verdict }} />
 
-        <hr className="border-gray-border" />
+        <div className="flex justify-center py-2">
+          <div className="h-px w-16 bg-foreground" />
+        </div>
 
         <MirrorSection
           lead={mirrorLead}
           bullets={mirrorBullets}
         />
 
-        <hr className="border-gray-border" />
+        <div className="flex justify-center py-2">
+          <div className="h-px w-16 bg-foreground" />
+        </div>
 
-        <div className="space-y-10">
+        <div className="space-y-8">
           {result.categories.map((cat, i) => (
             <div key={cat.name}>
               <CategoryCard category={cat} />
               {i < result.categories.length - 1 && (
-                <hr className="mt-10 border-gray-border" />
+                <div className="mt-8 flex justify-center">
+                  <div className="h-px w-16 bg-gray-border" />
+                </div>
               )}
             </div>
           ))}

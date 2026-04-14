@@ -3,7 +3,8 @@ export interface CategoryEvaluation {
   score: number; // 0.5-5.0 in 0.5 increments
   headline: string;
   feedback: string;
-  improvement: string;
+  improvement: string; // kept for backward compat
+  actions: string[]; // 1-3 numbered action items
 }
 
 export interface EvaluationResult {
