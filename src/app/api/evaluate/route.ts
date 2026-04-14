@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { evaluateDocument } from "@/lib/evaluate";
+import { saveReview } from "@/lib/redis";
 
 export const maxDuration = 60;
 
@@ -68,7 +69,15 @@ export async function POST(request: NextRequest) {
     }
 
     const evaluation = await evaluateDocument(documentText);
-    return NextResponse.json({ evaluation, truncated });
+
+    // Generate a short ID and persist to Redis
+    const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    await saveReview(id, {
+      evaluation,
+      createdAt: new Date().toISOString(),
+    });
+
+    return NextResponse.json({ evaluation, truncated, id });
   } catch (error) {
     console.error("Evaluation error:", error);
     return NextResponse.json(

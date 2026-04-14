@@ -80,7 +80,11 @@ export default function InputArea() {
       }
 
       sessionStorage.setItem("sowhat_result", JSON.stringify(data.evaluation));
-      router.push("/review");
+      if (data.id) {
+        router.push(`/r/${data.id}`);
+      } else {
+        router.push("/review");
+      }
     } catch {
       setError("Network error. Please check your connection and try again.");
       setLoading(false);
