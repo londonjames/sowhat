@@ -21,11 +21,16 @@ export default function CategoryCard({ category }: CategoryCardProps) {
         <StarRating rating={category.score} />
       </div>
 
-      <p className="mt-3 text-2xl font-semibold leading-snug text-foreground">
-        {category.headline}
-      </p>
+      {category.headline && (
+        <p
+          className="mt-3 text-2xl font-semibold leading-snug text-foreground"
+          style={{ fontFamily: "var(--font-garamond), Georgia, serif" }}
+        >
+          {category.headline}
+        </p>
+      )}
 
-      <div className="mt-5 grid grid-cols-[1fr_auto_1fr] gap-4 items-start">
+      <div className="mt-5 grid grid-cols-[1fr_auto_1fr] gap-5 items-start">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-light">
             What&rsquo;s happening
@@ -35,9 +40,9 @@ export default function CategoryCard({ category }: CategoryCardProps) {
           </p>
         </div>
 
-        <div className="flex items-center pt-6 text-gray-border">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+        <div className="flex items-start pt-6 text-gray-border">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M4 10h12M12 5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
 

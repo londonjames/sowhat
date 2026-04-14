@@ -74,16 +74,23 @@ export default function SavedReviewPage() {
 function ReviewLayout({ result }: { result: EvaluationResult }) {
   const router = useRouter();
 
+  // Backward compat: old evals have `mirror` string, new have `mirror_lead` + `mirror_bullets`
+  const r = result as EvaluationResult & { mirror?: string };
+  const mirrorLead = r.mirror_lead || r.mirror || "";
+  const mirrorBullets = r.mirror_bullets || [];
+  const ratingName = r.rating_name || "Reviewed";
+  const verdict = r.verdict || "";
+
   return (
     <div className="flex flex-col items-center px-6 py-16">
       <div className="w-full max-w-2xl space-y-10">
-        <ScoreDisplay result={result} />
+        <ScoreDisplay result={{ ...result, rating_name: ratingName, verdict }} />
 
         <hr className="border-gray-border" />
 
         <MirrorSection
-          lead={result.mirror_lead}
-          bullets={result.mirror_bullets}
+          lead={mirrorLead}
+          bullets={mirrorBullets}
         />
 
         <hr className="border-gray-border" />
